@@ -1,0 +1,33 @@
+@import "../../../styles.scss";
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: $light-blue;
+    text-align: left;
+    min-height: 60px;
+    height: auto;
+    z-index: 4;
+    text-align: center;
+}
+
+.link-footer {
+    font-size: 17px;
+    cursor: pointer;
+    color: $white !important;
+    position: relative;
+}
+
+.link-footer:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .only-desktop {
+        display: none;
+    }
+    .link-footer {
+        font-size: 12px;
+    }
+}
