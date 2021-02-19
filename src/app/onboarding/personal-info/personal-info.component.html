@@ -1,5 +1,88 @@
-<div style="display:block;">
-    <form>
-        <input placeholder="hola" />
+<div class="container">
+    <div class="title-page">
+        <h4>Primer paso: Ingrese su informacion personal</h4>
+        <hr>
+        <br>
+    </div>
+    <form [formGroup]="personalDataForm" novalidate>
+        <div class="form-row ">
+            <div class="form-group col-12 col-md-4 ">
+                <label for="inputApellido ">Apellido completo</label>
+                <input type="text " class="form-control " id="inputApellido " formControlName="inputApellido" aria-describedby="apellidoHelp " placeholder="Apellido ">
+            </div>
+            <div class="form-group col-12 col-md-4 ">
+                <label for="inputNombre ">Nombre completo</label>
+                <input type="text " class="form-control " id="inputNombre " formControlName="inputNombre" aria-describedby="nombreHelp " placeholder="Nombre ">
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="form-group col-12 col-md-4 ">
+                <label for="inputDNI ">Documento nacional de identidad</label>
+                <input type="text " class="form-control " id="inputDNI " formControlName="inputDNI" aria-describedby="dniHelp " placeholder="Documento">
+            </div>
+            <div class="form-group col-12 col-md-4 ">
+                <label for="inputBirthDate ">Fecha de nacimiento</label>
+                <input type="date" class="form-control " id="inputBirthDate " formControlName="inputBirthDate" aria-describedby="birthDateHelp " placeholder="Fecha ">
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="form-group col-12 col-md-6 ">
+                <label for="inputEmail ">Correo electrónico</label>
+                <input type="email " class="form-control " id="inputEmail " formControlName="inputEmail" aria-describedby="emailHelp " placeholder="Email ">
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="form-group form-group col-12 col-md-4 ">
+                <label for="inputSmartPhone ">Teléfono celular</label>
+                <input type="phone " class="form-control " id="inputSmartPhone " formControlName="inputSmartPhone" aria-describedby="smartphoneHelp " placeholder="Teléfono ">
+            </div>
+            <div class="form-group form-group col-12 col-md-4 ">
+                <label for="inputTelphone ">Teléfono fijo</label>
+                <input type="phone " class="form-control " id="inputTelphone " formControlName="inputTelphone" aria-describedby="telphoneHelp " placeholder="Teléfono ">
+            </div>
+        </div>
+        <hr>
+        <div class="form-row ">
+            <div class="form-group col-12 col-md-4 ">
+                <label for="inputProvincia ">Provincia de residencia</label>
+                <select id="inputProvincia " class="form-control ">
+                        <option selected>Seleccionar...</option>
+                        <option>...</option>
+                    </select>
+            </div>
+            <div class="form-group col-12 col-md-4 ">
+                <label for="inputMunicipio ">Municipio de residencia</label>
+                <select id="inputMunicipio " class="form-control ">
+                        <option selected>Seleccionar...</option>
+                        <option>...</option>
+                    </select>
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="form-group col-12 col-md-6 ">
+                <label for="inputDireccion ">Dirección (*)</label>
+                <input type="text " class="form-control " id="inputDireccion " formControlName="inputDireccion" aria-describedby="direccionHelp " placeholder="Dirección ">
+            </div>
+        </div>
+        <hr>
+        <div class="form-row ">
+            <div class="form-group col-12 col-md-4 ">
+                <label for="inputUserName ">Usuario</label>
+                <input type="text " class="form-control " id="inputUserName " formControlName="inputUserName" aria-describedby="userNameHelp " placeholder="Usuario ">
+            </div>
+            <div class=" form-group col-12 col-md-4 ">
+                <label for="inputPassword ">Contraseña</label>
+                <input type="password " class="form-control " id="inputPassword " formControlName="inputPassword" aria-describedby="PasswordHelp " placeholder="Contraseña ">
+            </div>
+        </div>
+        <div class="form-row ">
+            <div class="col-12 ">
+                <small>Los campos con (*) son obligatorios para poder continuar.</small>
+            </div>
+            <div class="col-12 ">
+                <br>
+                <button type="button " class="btn btn-info float-right " (click)="ejecutar() ">Continuar</button>
+            </div>
+        </div>
     </form>
 </div>
