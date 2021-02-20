@@ -1,24 +1,43 @@
-<div class="container">
+<div class="container card p-5">
     <div class="title-page">
-        <h4>Primer paso: Ingrese su informacion personal</h4>
+        <h4>Primer paso: Ingrese su información personal</h4>
+        <small>Paso 1 de 3:</small>
         <hr>
         <br>
     </div>
     <form [formGroup]="personalDataForm" novalidate>
         <div class="form-row ">
             <div class="form-group col-12 col-md-4 ">
-                <label for="inputApellido ">Apellido completo</label>
-                <input type="text " class="form-control " id="inputApellido " formControlName="inputApellido" aria-describedby="apellidoHelp " placeholder="Apellido ">
+                <label for="inputApellido ">Apellido completo (*)</label>
+                <input type="text " class="form-control " id="inputApellido " maxlenght="15" pattern="[a-zA-Z\s]{2,15}" formControlName="inputApellido" aria-describedby="apellidoHelp " placeholder="Apellido " [ngClass]="{'has-error': !personalDataForm.controls.inputApellido.valid && (personalDataForm.controls.inputApellido.dirty || personalDataForm.controls.inputApellido.touched)}">
+                <span class="input-error" *ngIf="!personalDataForm.controls.inputApellido.valid && (personalDataForm.controls.inputApellido.dirty || personalDataForm.controls.inputApellido.touched) && !personalDataForm.value.inputApellido">
+                    Este campo es requerido.
+                </span>
+                <span class="input-error" *ngIf="!personalDataForm.controls.inputApellido.valid && personalDataForm.value.inputApellido">
+                    Ha ingresado un Apellido incorrecto.
+                </span>
             </div>
             <div class="form-group col-12 col-md-4 ">
-                <label for="inputNombre ">Nombre completo</label>
-                <input type="text " class="form-control " id="inputNombre " formControlName="inputNombre" aria-describedby="nombreHelp " placeholder="Nombre ">
+                <label for="inputNombre ">Nombre completo (*)</label>
+                <input type="text " class="form-control " id="inputNombre " maxlenght="15" pattern="[a-zA-Z\s]{2,15}" formControlName="inputNombre" aria-describedby="nombreHelp " placeholder="Nombre " [ngClass]="{'has-error': !personalDataForm.controls.inputNombre.valid && (personalDataForm.controls.inputNombre.dirty || personalDataForm.controls.inputNombre.touched)}">
+                <span class="input-error" *ngIf="!personalDataForm.controls.inputNombre.valid && (personalDataForm.controls.inputNombre.dirty || personalDataForm.controls.inputNombre.touched) && !personalDataForm.value.inputNombre">
+                    Este campo es requerido.
+                </span>
+                <span class="input-error" *ngIf="!personalDataForm.controls.inputNombre.valid && personalDataForm.value.inputNombre">
+                    Ha ingresado un Nombre incorrecto.
+                </span>
             </div>
         </div>
         <div class="form-row ">
             <div class="form-group col-12 col-md-4 ">
-                <label for="inputDNI ">Documento nacional de identidad</label>
-                <input type="text " class="form-control " id="inputDNI " formControlName="inputDNI" aria-describedby="dniHelp " placeholder="Documento">
+                <label for="inputDNI ">Documento nacional de identidad (*)</label>
+                <input type="text " class="form-control " id="inputDNI " pattern="[0-9]{7,8}" formControlName="inputDNI" aria-describedby="dniHelp " placeholder="Documento" [ngClass]="{'has-error': !personalDataForm.controls.inputDNI.valid && (personalDataForm.controls.inputDNI.dirty || personalDataForm.controls.inputDNI.touched)}">
+                <span class="input-error" *ngIf="!personalDataForm.controls.inputDNI.valid && (personalDataForm.controls.inputDNI.dirty || personalDataForm.controls.inputDNI.touched) && !personalDataForm.value.inputDNI">
+                    Este campo es requerido.
+                </span>
+                <span class="input-error" *ngIf="!personalDataForm.controls.inputDNI.valid && personalDataForm.value.inputDNI > 0">
+                    Ha ingresado un DNI incorrecto.
+                </span>
             </div>
             <div class="form-group col-12 col-md-4 ">
                 <label for="inputBirthDate ">Fecha de nacimiento</label>
@@ -43,18 +62,16 @@
         </div>
         <hr>
         <div class="form-row ">
-            <div class="form-group col-12 col-md-4 ">
-                <label for="inputProvincia ">Provincia de residencia</label>
-                <select id="inputProvincia " class="form-control ">
-                        <option selected>Seleccionar...</option>
-                        <option>...</option>
+            <div class="form-group col-12 col-md-4" *ngIf="provincias.length > 0">
+                <label for="inputProvincia ">Provincia de residencia (*)</label>
+                <select id="inputProvincia " class="form-control " formControlName="inputProvincia">
+                    <option *ngFor="let provincia of provincias" [value]="provincia.id">{{provincia.nombre}}</option>
                     </select>
             </div>
             <div class="form-group col-12 col-md-4 ">
-                <label for="inputMunicipio ">Municipio de residencia</label>
-                <select id="inputMunicipio " class="form-control ">
-                        <option selected>Seleccionar...</option>
-                        <option>...</option>
+                <label for="inputMunicipio ">Municipio de residencia (*)</label>
+                <select id="inputMunicipio " class="form-control " formControlName="inputMunicipio">
+                    <option>...</option>
                     </select>
             </div>
         </div>
@@ -67,21 +84,21 @@
         <hr>
         <div class="form-row ">
             <div class="form-group col-12 col-md-4 ">
-                <label for="inputUserName ">Usuario</label>
+                <label for="inputUserName ">Usuario (*)</label>
                 <input type="text " class="form-control " id="inputUserName " formControlName="inputUserName" aria-describedby="userNameHelp " placeholder="Usuario ">
             </div>
             <div class=" form-group col-12 col-md-4 ">
-                <label for="inputPassword ">Contraseña</label>
+                <label for="inputPassword ">Contraseña (*)</label>
                 <input type="password " class="form-control " id="inputPassword " formControlName="inputPassword" aria-describedby="PasswordHelp " placeholder="Contraseña ">
             </div>
         </div>
         <div class="form-row ">
             <div class="col-12 ">
-                <small>Los campos con (*) son obligatorios para poder continuar.</small>
+                <small>Los campos con (*) son obligatorios.</small>
             </div>
             <div class="col-12 ">
                 <br>
-                <button type="button " class="btn btn-info float-right " (click)="ejecutar() ">Continuar</button>
+                <button type="button " class="btn btn-info float-right">Continuar</button>
             </div>
         </div>
     </form>

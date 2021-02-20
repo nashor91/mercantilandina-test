@@ -12,15 +12,12 @@ export class GeorefService {
 
   constructor(private http: HttpClient) {}
 
-  getProvincias() {
+  getProvincias(): any {
     
-    this.http.get<Provincias>(`${ this.URL_API }/provincias`)
-    .subscribe( ( resp: any ) => {
-      console.log(resp.data);
-    });
+    return this.http.get<Provincias>(`${ this.URL_API }/provincias`);
   }
 
-  getMunicipios(id:number) {
+  getMunicipios(id:number): any {
 
     const params = new HttpParams()
     .set('provincia', id.toString())
@@ -28,8 +25,8 @@ export class GeorefService {
     .set('max', '135' );
   
     this.http.get<Municipios>(`${ this.URL_API }/municipios`, { params } )
-    .subscribe( ( resp: any ) => {
-    console.log( resp.data );
+    .subscribe( ( resp: Municipios ) => {
+      return resp.municipios;
     });
 
   }
