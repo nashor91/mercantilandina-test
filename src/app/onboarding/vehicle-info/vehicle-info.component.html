@@ -1,36 +1,53 @@
-<div class="container whitebox">
+<div class="container card p-5 mb-3" *ngIf="stepNumber == 2">
     <div class="title-page">
         <h4>Segundo paso: Ingrese información de su vehículo</h4>
+        <small>Paso 2 de 4:</small>
         <hr>
         <br>
     </div>
     <form [formGroup]="vehicleDataForm" novalidate>
         <div class="form-row ">
-            <div class="form-group col-12 col-md-6 ">
+            <div class="form-group col-12 col-md-6" *ngIf="marcas.length > 0">
                 <label for="inputMarca ">Marca del vehículo (*)</label>
-                <select id="inputMarca " class="form-control " formControlName="inputMarca">
-                    <!--<option *ngFor="let marca of marcas" [value]="marca.id">{{marca.nombre}}</option>-->
-                    </select>
-            </div>
-            <div class="form-group col-12 col-md-6 ">
-                <label for="inputModelo ">Modelo del vehículo (*)</label>
-                <select id="inputModelo " class="form-control " formControlName="inputModelo">
-                        <!--<option *ngFor="let modelo of modelos" [value]="modelo.id">{{modelo.nombre}}</option>-->
-                        </select>
+                <select id="inputMarca " class="form-control " formControlName="inputMarca" (change)="enableAnio()" placeholder="" [ngClass]="{'has-error': !vehicleDataForm.controls.inputMarca.valid && (vehicleDataForm.controls.inputMarca.dirty || vehicleDataForm.controls.inputMarca.touched)}">
+                    <option *ngFor="let marca of marcas" [value]="marca.codigo">{{marca.desc|titlecase}}</option>
+                </select>
+                <span class="input-error" *ngIf="!vehicleDataForm.controls.inputMarca.valid && (vehicleDataForm.controls.inputMarca.dirty || vehicleDataForm.controls.inputMarca.touched) && !vehicleDataForm.value.inputMarca">
+                    El campo es requerido.
+                </span>
             </div>
         </div>
         <div class="form-row ">
-            <div class="form-group col-12 col-md-6 ">
-                <label for="inputVersion ">Versión del vehículo (*)</label>
-                <select id="inputVersion " class="form-control " formControlName="inputVersion">
-                    <!--<option *ngFor="let version of versiones" [value]="version.id">{{version.nombre}}</option>-->
-                    </select>
+            <div class="form-group col-12 col-md-3" *ngIf="anios.length > 0">
+                <label for="inputAnio ">Año de fabricación (*)</label>
+                <select id="inputAnio " class="form-control " formControlName="inputAnio" (change)="getModelos()" placeholder="" [ngClass]="{'has-error': !vehicleDataForm.controls.inputAnio.valid && (vehicleDataForm.controls.inputAnio.dirty || vehicleDataForm.controls.inputAnio.touched)}">
+                        <option *ngFor="let anio of anios" [value]="anio">{{anio}}</option>
+                        </select>
+                <span class="input-error" *ngIf="!vehicleDataForm.controls.inputAnio.valid && (vehicleDataForm.controls.inputAnio.dirty || vehicleDataForm.controls.inputAnio.touched) && !vehicleDataForm.value.inputAnio">
+                            El campo es requerido.
+                        </span>
             </div>
-            <div class="form-group col-12 col-md-3 ">
-                <label for="inputVersion ">Año del vehículo (*)</label>
-                <select id="inputVersion " class="form-control " formControlName="inputVersion">
-                    <!--<option *ngFor="let anio of anios" [value]="anio.id">{{anio.valor}}</option>-->
+        </div>
+        <div class="form-row ">
+            <div class="form-group col-12 col-md-6 " *ngIf=" modelos.length > 0">
+                <label for="inputModelo ">Modelo del vehículo (*)</label>
+                <select id="inputModelo " class="form-control " formControlName="inputModelo" (change)="getVersiones()" placeholder="" [ngClass]="{'has-error': !vehicleDataForm.controls.inputModelo.valid && (vehicleDataForm.controls.inputModelo.dirty || vehicleDataForm.controls.inputModelo.touched)}">
+                        <option *ngFor="let modelo of modelos" [value]="modelo">{{modelo.trim().toString()|titlecase}}</option>
+                        </select>
+                <span class="input-error" *ngIf="!vehicleDataForm.controls.inputModelo.valid && (vehicleDataForm.controls.inputModelo.dirty || vehicleDataForm.controls.inputModelo.touched) && !vehicleDataForm.value.inputModelo">
+                            El campo es requerido.
+                        </span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-12 col-md-6 " *ngIf=" versiones.length > 0">
+                <label for="inputVersion ">Versión del vehículo (*)</label>
+                <select id="inputVersion " class="form-control " formControlName="inputVersion" placeholder="Seleccione una version" [ngClass]="{'has-error': !vehicleDataForm.controls.inputVersion.valid && (vehicleDataForm.controls.inputVersion.dirty || vehicleDataForm.controls.inputVersion.touched)}">
+                    <option *ngFor="let version of versiones" [value]="version.codigo">{{version.desc|titlecase}}</option>
                     </select>
+                <span class="input-error" *ngIf="!vehicleDataForm.controls.inputVersion.valid && (vehicleDataForm.controls.inputVersion.dirty || vehicleDataForm.controls.inputVersion.touched) && !vehicleDataForm.value.inputVersion">
+                        El campo es requerido.
+                    </span>
             </div>
         </div>
         <div class="form-row ">
@@ -39,8 +56,8 @@
             </div>
             <div class="col-12" style="text-align:right">
                 <br>
-                <button type="button " type="submit" class="btn btn-light m-3">Volver</button>
-                <button type="button " class="btn btn-info">Continuar</button>
+                <button type="button" class="btn btn-light m-3" (click)="navigateForm(1)">Volver</button>
+                <button type="button" class="btn btn-info" (click)="navigateForm(3)" [disabled]="vehicleDataForm.status != 'VALID' || !this.marca && !this.anio && !this.modelo">Continuar</button>
             </div>
         </div>
     </form>

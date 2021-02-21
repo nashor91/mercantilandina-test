@@ -1,0 +1,9 @@
+@import '../../../styles.scss';
+.mercantil-card {
+    width: 100%;
+    min-height: 580px;
+}
+
+.insurance-selected {
+    border: 2px solid $lighter-blue;
+}

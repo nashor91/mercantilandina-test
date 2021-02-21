@@ -1,1 +1,42 @@
-<h6>Insurance-coverage works!</h6>
+<div class="container card p-5 mb-3" *ngIf="stepNumber == 1">
+    <div class="title-page">
+        <h4>Paso 3: Seleccione el plan que mas se adecue a sus necesidad</h4>
+        <small>Paso 3 de 4:</small>
+        <hr>
+        <br>
+    </div>
+    <div class="row justify-content-center" *ngIf="coberturas.length > 0">
+        <div class="col-12 col-md-5 col-lg-4 col-xl-3 margin-top-15 margin-bottom-15" *ngFor="let cobertura of coberturas">
+            <div class="card mercantil-card cursor-pointer" (click)="!cobertura.selected ? selectCobertura(cobertura) : deselectCobertura(cobertura)" [ngClass]="{'insurance-selected': cobertura.selected}">
+                <div style="text-align: center;" *ngIf="cobertura.selected">
+                    <img src="/assets/img/check-circle.svg" alt="" width="32" height="32" title="Bootstrap" class="margin-top-15">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{cobertura.titulo}}</h5>
+                    <p class="card-text">{{cobertura.descripcion}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Puntaje: {{cobertura.puntaje}}</li>
+                    <li class="list-group-item">Costo: $ {{cobertura.costo | number}}</li>
+                    <li class="list-group-item">Franquicia: $ {{cobertura.franquicia | number : '1.2-2'}}</li>
+                    <li class="list-group-item" *ngIf="cobertura.granizo">Protección contra granizo: Si</li>
+                    <li class="list-group-item" *ngIf="!cobertura.granizo">Protección contra granizo: No</li>
+                </ul>
+                <div class="card-body">
+                    <button style="width: 100%;" type="submit" class="btn btn-selector-pr imary" (click)="selectCobertura(cobertura)" *ngIf="!cobertura.selected">Seleccionar</button>
+                    <button style="width: 100%;" type="submit" class="btn btn-selector-secondary" (click)="deselectCobertura(cobertura)" *ngIf="cobertura.selected">Deseleccionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-row ">
+        <div class="col-12 ">
+            <small>Debe seleccionar un plan para poder continuar.</small>
+        </div>
+        <div class="col-12" style="text-align:right">
+            <br>
+            <button type="button" class="btn btn-light m-3" (click)="navigateForm(2)">Volver</button>
+            <button type="button" class="btn btn-info" [disabled]="!cobertura" (click)="navigateForm(4)">Continuar</button>
+        </div>
+    </div>
+</div>

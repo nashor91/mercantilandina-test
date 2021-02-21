@@ -18,6 +18,7 @@ export interface Coberturas {
     descripcion:    string;
     puntaje:        number;
     granizo:        boolean;
+    selected:       boolean;
 }
 
 // Converts JSON strings to/from your types

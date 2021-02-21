@@ -1,1 +1,55 @@
-<p>review-info works!</p>
+<div class="container card p-5 mb-3" *ngIf="stepNumber == 4 && allFormData">
+    <div class="title-page">
+        <h4>Paso 4: Compruebe que los datos ingresados sean correctos</h4>
+        <small>Paso 4 de 4:</small>
+        <hr>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h5>Informacion personal</h5>
+            <ul class="list-group">
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputApellido"><strong>Apellido completo: </strong>{{allFormData[0]?.personalForm.inputApellido}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputNombre"><strong>Nombre completo: </strong>{{allFormData[0]?.personalForm.inputNombre}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputDNI"><strong>Documento de identidad: </strong>{{allFormData[0]?.personalForm.inputDNI}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputBirthDate"><strong>Fecha de nacimiento: </strong>{{allFormData[0]?.personalForm.inputBirthDate}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputEmail"><strong>Correo electrónico: </strong>{{allFormData[0]?.personalForm.inputEmail}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputSmartPhone"><strong>Teléfono celular: </strong>{{allFormData[0]?.personalForm.inputSmartPhone}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputTelphone"><strong>Teléfono fijo: </strong>{{allFormData[0]?.personalForm.inputTelphone}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.provinciaNombre"><strong>Provincia: </strong>{{allFormData[0]?.personalForm.provinciaNombre}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.municipioNombre"><strong>Municipio: </strong>{{allFormData[0]?.personalForm.municipioNombre}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputDireccion"><strong>Dirección: </strong>{{allFormData[0]?.personalForm.inputDireccion}}</li>
+                <li class="list-group-item" *ngIf="allFormData[0]?.personalForm.inputUserName"><strong>Usuario: </strong>{{allFormData[0]?.personalForm.inputUserName}}</li>
+            </ul>
+            <hr>
+        </div>
+        <div class="col-12">
+            <h5>Informacion del vehículo</h5>
+            <ul class="list-group">
+                <li class="list-group-item" *ngIf="allFormData[1]?.vehicleForm.nombreMarca"><strong>Marca del vehículo: </strong>{{allFormData[1]?.vehicleForm.nombreMarca | titlecase}}</li>
+                <li class="list-group-item" *ngIf="allFormData[1]?.vehicleForm.inputAnio"><strong>Año de fabricación: </strong>{{allFormData[1]?.vehicleForm.inputAnio}}</li>
+                <li class="list-group-item" *ngIf="allFormData[1]?.vehicleForm.inputModelo"><strong>Modelo del vehículo: </strong>{{allFormData[1]?.vehicleForm.inputModelo | titlecase}}</li>
+                <li class="list-group-item" *ngIf="allFormData[1]?.vehicleForm.nombreVersion"><strong>Version del vehículo: </strong>{{allFormData[1]?.vehicleForm.nombreVersion | titlecase}}</li>
+            </ul>
+            <hr>
+        </div>
+        <div class="col-12">
+            <h5>Informacion del plan de cobertura seleccionada:</h5>
+            <ul class="list-group">
+                <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.titulo"><strong>Título: </strong>{{allFormData[2]?.insuranceForm.titulo}}</li>
+                <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.descripcion"><strong>Descripción: </strong>{{allFormData[2]?.insuranceForm.descripcion}}</li>
+                <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.puntaje"><strong>Puntaje: </strong>{{allFormData[2]?.insuranceForm.puntaje}}</li>
+                <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.costo"><strong>Costo: </strong>$ {{allFormData[2]?.insuranceForm.costo | number}}</li>
+                <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.franquicia == ''"><strong>Franquicia: </strong>$ {{allFormData[2]?.insuranceForm.franquicia | number}}</li>
+                <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.granizo"><strong>Protección contra granizo: </strong>Si</li>
+                <li class="list-group-item" *ngIf="!allFormData[2]?.insuranceForm.granizo"><strong>Protección contra granizo: </strong>No</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-12" style="text-align:right">
+        <br>
+        <button type="button" class="btn btn-light m-3" (click)="navigateForm(3)">Volver</button>
+        <button type="button" class="btn btn-info" (click)="navigateForm(5)" [disabled]="!allFormData[0]?.personalForm && !allFormData[1]?.vehicleForm && !allFormData[2]?.insuranceForm">Finalizar</button>
+    </div>
+
+</div>
