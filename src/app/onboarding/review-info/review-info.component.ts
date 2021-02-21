@@ -9,10 +9,6 @@ import { DataService } from '../services/data.service';
 })
 export class ReviewInfoComponent implements OnInit {
 
-  constructor(
-    private dataService: DataService
-  ) { }
-
   // Getter que retorna el paso actual.
 
   get stepNumber() {
@@ -29,7 +25,14 @@ export class ReviewInfoComponent implements OnInit {
 
   };
 
+  constructor(
+    private dataService: DataService
+  ) { }
+
+
+
   ngOnInit(): void {
+    
   }
 
   // Función que asigna el valor del paso siguiente.

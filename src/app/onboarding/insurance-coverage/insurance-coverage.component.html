@@ -1,4 +1,4 @@
-<div class="container card p-5 mb-3" *ngIf="stepNumber == 1">
+<div class="container card p-5 mb-3" *ngIf="stepNumber == 3">
     <div class="title-page">
         <h4>Paso 3: Seleccione el plan que mas se adecue a sus necesidad</h4>
         <small>Paso 3 de 4:</small>
@@ -18,7 +18,7 @@
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">Puntaje: {{cobertura.puntaje}}</li>
                     <li class="list-group-item">Costo: $ {{cobertura.costo | number}}</li>
-                    <li class="list-group-item">Franquicia: $ {{cobertura.franquicia | number : '1.2-2'}}</li>
+                    <li class="list-group-item">Franquicia: $ {{cobertura.franquicia | number}}</li>
                     <li class="list-group-item" *ngIf="cobertura.granizo">Protección contra granizo: Si</li>
                     <li class="list-group-item" *ngIf="!cobertura.granizo">Protección contra granizo: No</li>
                 </ul>

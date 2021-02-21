@@ -68,8 +68,7 @@ export class InsuranceCoverageComponent implements OnInit {
   deselectCobertura(cobertura: any) {
 
     cobertura.selected = false;
-    this.cobertura = "";
-
+    this.cobertura = ""; 
   };
 
   // Función que actualiza el valor del paso y almacena la información cargada por el usuario

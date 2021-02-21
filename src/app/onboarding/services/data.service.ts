@@ -28,7 +28,7 @@ export class DataService {
 
   set personalFormData(data: any) {
 
-    this.formsData[0]?.personalForm ? this.formsData[0].personalForm == data : this.formsData.push({personalForm:data});
+    this.formsData[0]?.personalForm ? this.formsData[0].personalForm = data : this.formsData.push({personalForm:data});
 
   };
 
@@ -36,7 +36,7 @@ export class DataService {
 
   set vehicleFormData(data: any) {
 
-    this.formsData[0]?.vehicleForm ? this.formsData[0].vehicleForm == data : this.formsData.push({vehicleForm:data});
+    this.formsData[1]?.vehicleForm ? this.formsData[1].vehicleForm = data : this.formsData.push({vehicleForm:data});
 
   };
 
@@ -44,7 +44,7 @@ export class DataService {
 
   set insuranceFormData(data: any) {
     
-    this.formsData[0]?.insuranceForm ? this.formsData[0].insuranceForm == data : this.formsData.push({insuranceForm:data});
+    this.formsData[2]?.insuranceForm ? this.formsData[2].insuranceForm = data : this.formsData.push({insuranceForm:data});
 
   };
 

@@ -40,7 +40,7 @@
                 <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.descripcion"><strong>Descripción: </strong>{{allFormData[2]?.insuranceForm.descripcion}}</li>
                 <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.puntaje"><strong>Puntaje: </strong>{{allFormData[2]?.insuranceForm.puntaje}}</li>
                 <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.costo"><strong>Costo: </strong>$ {{allFormData[2]?.insuranceForm.costo | number}}</li>
-                <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.franquicia == ''"><strong>Franquicia: </strong>$ {{allFormData[2]?.insuranceForm.franquicia | number}}</li>
+                <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.franquicia"><strong>Franquicia: </strong>$ {{allFormData[2]?.insuranceForm.franquicia | number}}</li>
                 <li class="list-group-item" *ngIf="allFormData[2]?.insuranceForm.granizo"><strong>Protección contra granizo: </strong>Si</li>
                 <li class="list-group-item" *ngIf="!allFormData[2]?.insuranceForm.granizo"><strong>Protección contra granizo: </strong>No</li>
             </ul>
